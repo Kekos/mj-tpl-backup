@@ -1,8 +1,11 @@
 [package]
 name = "mj-tpl-backup"
+description = "A tool for performing backups of Mailjet templates"
 version = "0.1.0"
+authors = ["Christoffer Lindahl Hassel"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+clap = { version = "4.2.1", features = ["derive"] }

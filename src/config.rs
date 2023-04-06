@@ -112,17 +112,20 @@ pub fn delete_account(args: &CliArgs) {
     let mut config_repo = ConfigRepository::read();
     let account_name = get_account_name(args);
 
-    let iter = config_repo.config.accounts.iter_mut();
-    let old_size = iter.len();
-    let new_accounts: Vec<MjAccount> = iter.filter(|a| a.name != account_name).collect();
+    let old_size = config_repo.config.accounts.len();
 
-    if old_size == new_accounts.len() {
+    config_repo
+        .config
+        .accounts
+        .retain(|a| a.name != account_name);
+
+    let new_size = config_repo.config.accounts.len();
+
+    if old_size == new_size {
         println!("Account with name {} not found!", account_name);
 
         return;
     }
-
-    config_repo.config.accounts = new_accounts;
 
     ConfigRepository::write(&config_repo);
 }

@@ -10,7 +10,7 @@ pub struct Config {
 }
 
 #[derive(Serialize, Deserialize)]
-struct MjAccount {
+pub struct MjAccount {
     name: String,
     private: String,
     public: String,

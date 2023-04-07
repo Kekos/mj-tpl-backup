@@ -16,6 +16,16 @@ pub struct MjAccount {
     public: String,
 }
 
+impl MjAccount {
+    pub fn private(&self) -> &str {
+        self.private.as_str()
+    }
+
+    pub fn public(&self) -> &str {
+        self.public.as_str()
+    }
+}
+
 impl Config {
     pub fn get_account(&self, name: &str) -> Option<&MjAccount> {
         self.accounts.iter().find(|x| x.name == name)
@@ -70,8 +80,6 @@ pub fn new_account() {
     });
 
     ConfigRepository::write(&config_repo);
-
-    todo!("connect");
 }
 
 pub fn edit_account(args: &CliArgs) {
@@ -96,8 +104,6 @@ pub fn edit_account(args: &CliArgs) {
     account.public = public_key;
 
     ConfigRepository::write(&config_repo);
-
-    todo!("connect");
 }
 
 pub fn delete_account(args: &CliArgs) {

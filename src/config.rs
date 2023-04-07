@@ -26,14 +26,6 @@ impl Config {
     }
 }
 
-fn get_account_name(args: &CliArgs) -> &str {
-    if let None = args.account {
-        return "default";
-    }
-
-    args.account.as_ref().unwrap().as_str()
-}
-
 pub fn list_accounts() {
     println!("Name         | Private key            | Public key");
     println!("---------------------------------------------------------------");
@@ -84,7 +76,7 @@ pub fn new_account() {
 
 pub fn edit_account(args: &CliArgs) {
     let mut config_repo = ConfigRepository::read();
-    let account_name = get_account_name(args);
+    let account_name = args.get_account_name();
     let mut account = match config_repo.config.get_account_mut(account_name) {
         None => {
             println!("Account with name {} not found!", account_name);
@@ -110,7 +102,7 @@ pub fn edit_account(args: &CliArgs) {
 
 pub fn delete_account(args: &CliArgs) {
     let mut config_repo = ConfigRepository::read();
-    let account_name = get_account_name(args);
+    let account_name = args.get_account_name();
 
     let old_size = config_repo.config.accounts.len();
 

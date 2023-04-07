@@ -13,6 +13,16 @@ pub struct CliArgs {
     account: Option<String>,
 }
 
+impl CliArgs {
+    fn get_account_name(&self) -> &str {
+        if let None = self.account {
+            return "default";
+        }
+
+        self.account.as_ref().unwrap().as_str()
+    }
+}
+
 #[derive(Subcommand)]
 enum CliCommands {
     /// Configures this tool

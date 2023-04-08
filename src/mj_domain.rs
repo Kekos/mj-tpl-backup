@@ -37,7 +37,7 @@ pub struct TemplateContentHeaders {
     #[serde(rename = "ReplyEmail")]
     pub reply_email: String,
     #[serde(rename = "X-MJ-TemplateLanguage")]
-    pub x_mj_template_language: String,
+    pub x_mj_template_language: Option<String>,
     #[serde(rename = "From")]
     pub from: String,
     #[serde(rename = "Reply-To")]
@@ -147,7 +147,7 @@ mod tests {
                         sender_name: String::from("SENDER NAME"),
                         sender_email: String::from("test@example.com"),
                         reply_email: String::from(""),
-                        x_mj_template_language: String::from("0"),
+                        x_mj_template_language: Some(String::from("0")),
                         from: String::from("FROM NAME <test@example.com>"),
                         reply_to: String::from(""),
                     },
